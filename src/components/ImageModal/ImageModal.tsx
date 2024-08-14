@@ -1,3 +1,4 @@
+import { FC } from "react";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
@@ -12,7 +13,19 @@ const customStyles = {
   },
 };
 
-export default function ImageModal({ modalIsOpen, closeModal, src, alt }) {
+interface ImageModalProps {
+  modalIsOpen: boolean;
+  closeModal: () => void;
+  src: string;
+  alt: string;
+}
+
+const ImageModal: FC<ImageModalProps> = ({
+  modalIsOpen,
+  closeModal,
+  src,
+  alt,
+}) => {
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -23,4 +36,6 @@ export default function ImageModal({ modalIsOpen, closeModal, src, alt }) {
       <img src={src} alt={alt} />
     </Modal>
   );
-}
+};
+
+export default ImageModal;

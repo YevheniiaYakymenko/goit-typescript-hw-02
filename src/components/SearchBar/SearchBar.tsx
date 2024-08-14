@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import toast, { Toaster } from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
-export default function SearchBar({ onSubmit }) {
-  const [query, setQuery] = useState("");
-  const handleChange = (e) => {
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ onSubmit }) => {
+  const [query, setQuery] = useState<string>("");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (query.trim() === "") {
       toast.error("Please enter a search word");
@@ -36,4 +40,6 @@ export default function SearchBar({ onSubmit }) {
       <Toaster />
     </header>
   );
-}
+};
+
+export default SearchBar;

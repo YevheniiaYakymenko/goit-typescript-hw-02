@@ -7,37 +7,52 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
-export default function App() {
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(999);
-  const [query, setQuery] = useState("");
-  const [loadMore, setLoadMore] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalImage, setModalImage] = useState({});
+export interface Image {
+  id: string;
+  descr: string | null;
+  alt_descr: string | null;
+  urls: {
+    regular: string;
+    small: string;
+  };
+}
 
-  const handleSearch = (query) => {
+export interface ModalImage {
+  src?: string;
+  alt?: string | null;
+}
+
+export default function App() {
+  const [images, setImages] = useState<Image[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(999);
+  const [query, setQuery] = useState<string>("");
+  const [loadMore, setLoadMore] = useState<boolean>(false);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<ModalImage>({});
+
+  const handleSearch = (query: string) => {
     setImages([]);
     setPage(1);
     setQuery(query);
   };
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setPage((prevPage) => prevPage + 1);
     if (page >= totalPages) {
       setLoadMore(false);
     }
   };
-  const openModal = (image) => {
+  const openModal = (image: ModalImage): void => {
     setModalIsOpen(true);
     setModalImage({
       src: image.src,
       alt: image.alt,
     });
   };
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalIsOpen(false);
     setModalImage({});
   };
@@ -75,8 +90,8 @@ export default function App() {
       <ImageModal
         modalIsOpen={modalIsOpen}
         closeModal={closeModal}
-        src={modalImage.src}
-        alt={modalImage.alt}
+        src={modalImage.src || ""}
+        alt={modalImage.alt || ""}
       />
     </>
   );
