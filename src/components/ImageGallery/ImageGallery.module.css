@@ -1,0 +1,10 @@
+.list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.list li {
+  flex-basis: calc((100%-8px) / 2);
+}
