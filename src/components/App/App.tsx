@@ -1,26 +1,12 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import fetchImg from "../../apiService/img-gallery";
+import fetchImg, { Image, ModalImage } from "../../apiService/img-gallery";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "../ImageModal/ImageModal";
 
-export interface Image {
-  id: string;
-  descr: string | null;
-  alt_descr: string | null;
-  urls: {
-    regular: string;
-    small: string;
-  };
-}
-
-export interface ModalImage {
-  src?: string;
-  alt?: string | null;
-}
 
 export default function App() {
   const [images, setImages] = useState<Image[]>([]);

@@ -1,8 +1,21 @@
 import axios from "axios";
-import { Image } from "../components/App/App";
 
 axios.defaults.baseURL = "https://api.unsplash.com/";
 
+export interface Image {
+  id: string;
+  descr: string | null;
+  alt_descr: string | null;
+  urls: {
+    regular: string;
+    small: string;
+  };
+}
+
+export interface ModalImage {
+  src?: string;
+  alt?: string | null;
+}
 interface FetchImgResponse {
   results: Image[];
   total_pages: number;

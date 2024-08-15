@@ -2,7 +2,7 @@ import { FC } from "react";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
 
-const customStyles = {
+const customStyles: Modal.Styles = {
   content: {
     top: "50%",
     left: "50%",

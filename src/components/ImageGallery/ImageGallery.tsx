@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { Image, ModalImage } from "../App/App";
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import { Image, ModalImage } from "../../apiService/img-gallery";
 
 interface ImageGalleryProps {
   images: Image[];
